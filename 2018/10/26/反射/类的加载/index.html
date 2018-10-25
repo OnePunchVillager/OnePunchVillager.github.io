@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+
+
+
+
+
+
+<body>
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> good good study,day day up </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/img/avatar.jpg">
+        </div>
+        <div class="name">
+            <i>OnePunchVillager</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li>
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li>
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#类的加载"><span class="toc-text">类的加载</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#概述"><span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类的初始化时机"><span class="toc-text">类的初始化时机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类加载器"><span class="toc-text">类加载器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#类加载器的作用"><span class="toc-text">类加载器的作用</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#反射"><span class="toc-text">反射</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#通过反射获取构造方法并使用"><span class="toc-text">通过反射获取构造方法并使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过反射获取成员变量并使用"><span class="toc-text">通过反射获取成员变量并使用</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input">
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i> good good study,day day up </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2018-10-26 00:29:53</span></span>
+        
+        
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="类的加载"><a href="#类的加载" class="headerlink" title="类的加载"></a>类的加载</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><blockquote>
+<p>当程序要使用某个类时，如果该类还未被加载到内存中，则系统会通过加载，连接，初始化三步来实现对这个类进行初始化。</p>
+</blockquote>
+<ul>
+<li><p>加载 </p>
+<ul>
+<li>就是指将class文件读入内存，并为之创建一个Class对象。</li>
+<li>任何类被使用时系统都会建立一个Class对象。</li>
+</ul>
+</li>
+<li><p>连接</p>
+<ul>
+<li><p>验证 是否有正确的内部结构，并和其他类协调一致</p>
+</li>
+<li><p>准备 负责为类的静态成员分配内存，并设置默认初始化值</p>
+</li>
+<li>解析 将类的二进制数据中的符号引用替换为直接引用</li>
+</ul>
+</li>
+<li><p>初始化 </p>
+</li>
+</ul>
+<h2 id="类的初始化时机"><a href="#类的初始化时机" class="headerlink" title="类的初始化时机"></a>类的初始化时机</h2><ul>
+<li><p>创建类的实例</p>
+</li>
+<li><p>访问类的静态变量，或者为静态变量赋值</p>
+</li>
+<li><p>调用类的静态方法</p>
+</li>
+<li><p>使用反射方式来强制创建某个类或接口对应的java.lang.Class对象</p>
+</li>
+<li><p>初始化某个类的子类</p>
+</li>
+<li><p>直接使用java.exe命令来运行某个主类</p>
+</li>
+</ul>
+<h2 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h2><ul>
+<li><p>类加载器</p>
+<ul>
+<li>负责将.class文件加载到内在中，并为之生成对应的Class对象。</li>
+<li>虽然我们不需要关心类加载机制，但是了解这个机制我们就能更好的理解程序的运行。</li>
+</ul>
+</li>
+<li><p>类加载器的组成</p>
+<ul>
+<li>Bootstrap ClassLoader 根类加载器</li>
+<li>Extension ClassLoader 扩展类加载器</li>
+<li>Sysetm ClassLoader 系统类加载器</li>
+</ul>
+</li>
+</ul>
+<h3 id="类加载器的作用"><a href="#类加载器的作用" class="headerlink" title="类加载器的作用"></a>类加载器的作用</h3><ul>
+<li><p>Bootstrap ClassLoader 根类加载器</p>
+<ul>
+<li>也被称为引导类加载器，负责Java核心类的加载<ul>
+<li>比如System,String等。在JDK中JRE的lib目录下rt.jar文件中</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Extension ClassLoader 扩展类加载器</p>
+<ul>
+<li><p>负责JRE的扩展目录中jar包的加载。</p>
+<ul>
+<li>在JDK中JRE的lib目录下ext目录</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Sysetm ClassLoader 系统类加载器</p>
+<ul>
+<li>负责在JVM启动时加载来自java命令的class文件，以及classpath环境变量所指定的jar包和类路径</li>
+</ul>
+</li>
+</ul>
+<h1 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h1><ul>
+<li><p>JAVA反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意一个方法和属性；这种动态获取的信息以及动态调用对象的方法的功能称为java语言的反射机制。</p>
+</li>
+<li><p>要想解剖一个类,必须先要获取到该类的<strong>字节码文件对象</strong>。而解剖使用的就是<strong>Class类</strong>中的方法.所以先要获取到每一个字节码文件对应的Class类型的对象.</p>
+</li>
+<li><p>Class类（类的成员分别对应一个对象）</p>
+<ul>
+<li>属性 Field</li>
+<li>构造方法 Constructor</li>
+<li>成员方法 Method</li>
+</ul>
+</li>
+<li><p>获取Class对象的方式</p>
+<ul>
+<li>A: Object类的getClass()方法</li>
+<li>B: 数据类型的静态属性class</li>
+<li><p>C: Class类中的静态方法（最好写全路径，会抛出ClassNotFoundException）</p>
+<ul>
+<li>public static Class forName(String className)</li>
+</ul>
+</li>
+<li><p>开发时一般用第三种</p>
+<ul>
+<li>为什么呢?因为第三种是一个字符串，而不是一个具体的类名。这样我们就可以把这样的字符串配置到配置文件中。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="通过反射获取构造方法并使用"><a href="#通过反射获取构造方法并使用" class="headerlink" title="通过反射获取构造方法并使用"></a>通过反射获取构造方法并使用</h2><ul>
+<li><p>获取构造方法</p>
+<ul>
+<li><code>public Constructor[] getConstructors()</code>:所有公共构造方法</li>
+<li><code>public Constructor[] getDeclaredConstructors()</code>:所有构造方法</li>
+<li><code>public Constructor&lt;T&gt; getConstructor(Class&lt;?&gt;... parameterTypes)</code><ul>
+<li>获取单个构造方法,但不能获取<code>private</code>的，会抛出<code>NoSuchMethodException</code>异常</li>
+<li>参数表示的是：你要获取的构造方法的<strong>构造参数个数</strong>及对应的数据类型的class字节码文件对象</li>
+</ul>
+</li>
+<li><code>public Constructor&lt;T&gt; getDeclaredConstructors(Class&lt;?&gt;... parameterTypes)</code>:<ul>
+<li>获取单个构造方法，可以获取所有构造方法，但是对于<code>private</code>方法，不能直接使用，会抛出 <code>IllegalAccessException</code>:非法的访问异常</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>设置构造方法为可访问</p>
+<ul>
+<li><code>public void setAccessible(boolean flag)</code>：<ul>
+<li>值为true则指示反射的对象在使用时应该取消Java语言访问检查。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>创建对象</p>
+<ul>
+<li><code>public T newInstance(Object... initargs)</code>:使用此 Constructor 对象表示的构造方法来创建该构造方法的声明类的新实例，并用指定的初始化参数初始化该实例。</li>
+</ul>
+</li>
+<li><p>例获取公共构造器</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Person(String name,int age)</span></span><br><span class="line"><span class="comment">//获取Class对象</span></span><br><span class="line">Class c = Class.forName(<span class="string">"test.Person"</span>);</span><br><span class="line"><span class="comment">//获取构造器</span></span><br><span class="line">Constructor con = c.getConstructor(String.class,<span class="keyword">int</span>.class);</span><br><span class="line"><span class="comment">//构造对象</span></span><br><span class="line">Object o = con.newInstance(<span class="string">"Tom"</span>,<span class="number">12</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>访问私有构造器</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//private Person(String name,int age)</span></span><br><span class="line"><span class="comment">//获取Class对象</span></span><br><span class="line">Class c = Class.forName(<span class="string">"test.Person"</span>);</span><br><span class="line"><span class="comment">//获取构造器</span></span><br><span class="line">Constructor con = c.getDeclaredConstructor(String.class,<span class="keyword">int</span>.class);</span><br><span class="line"><span class="comment">//设置可以访问</span></span><br><span class="line">con.canAccess(<span class="keyword">true</span>);</span><br><span class="line"><span class="comment">//构造对象</span></span><br><span class="line">Object o = con.newInstance(<span class="string">"Tom"</span>,<span class="number">12</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="通过反射获取成员变量并使用"><a href="#通过反射获取成员变量并使用" class="headerlink" title="通过反射获取成员变量并使用"></a>通过反射获取成员变量并使用</h2><ul>
+<li>获取所有成员<ul>
+<li><code>Field[] getFields()</code>:获取公共属性</li>
+<li><code>Field[] getDeclaredFields()</code>:获取所有属性</li>
+</ul>
+</li>
+<li>获取单个成员<ul>
+<li><code>Filed getFiled()</code>:获取单个公共属性</li>
+<li><code>Field getDeclaredField()</code>：获取单个任意属性</li>
+</ul>
+</li>
+<li>设置属性可访问<ul>
+<li><code>public void setAccessible(boolean flag)</code></li>
+</ul>
+</li>
+<li><p>修改成员的值</p>
+<ul>
+<li><code>public void set(Object obj,Object value)</code>:<ul>
+<li>将指定对象变量上此 Field 对象表示的字段设置为指定的新值。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取Class对象</span></span><br><span class="line">Class c = Class.forName(<span class="string">"test.Person"</span>);</span><br><span class="line"><span class="comment">//获取无参构造器</span></span><br><span class="line">Constructor con = c.getDeclaredConstructor();</span><br><span class="line"><span class="comment">//通过无参构造器创建对象</span></span><br><span class="line">Object o = con.newInstance();</span><br><span class="line"><span class="comment">//获取公共属性并赋值</span></span><br><span class="line">Field nameField = c.getField(<span class="string">"name"</span>);</span><br><span class="line">nameField.set(o, <span class="string">"Tom"</span>);</span><br><span class="line"><span class="comment">//获取私有属性</span></span><br><span class="line">Field ageField = c.getDeclaredField(<span class="string">"age"</span>);</span><br><span class="line"><span class="comment">//设为可访问并赋值</span></span><br><span class="line">ageField.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">ageField.set(o, <span class="number">18</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+        
+        <br>
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+    </div>
+</div>
+
+
+<footer class="footer">
+	<div id="vcomments"></div>
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":80,"height":160},"mobile":{"show":false},"log":false});</script></body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<!-- valine Comments -->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/xcss/valine@v1.1.7/dist/Valine.min.js"></script>
+<script type="text/javascript">
+    new Valine({
+        el: '#vcomments',
+        notify: 'false',
+        verify: 'false',
+        app_id: 'ORb4VwnuTELrymEAjp5Urybp-gzGzoHsz',
+        app_key: '59jkS3SViIqN2TJgLvaidsgk',
+        placeholder: 'Just go go',
+        avatar: 'mm'
+    });
+</script>
+
+
+
+
+
+</html>

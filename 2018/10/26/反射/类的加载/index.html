@@ -11,7 +11,7 @@
 
     <title>
         
-        
+        J2SE学习笔记-反射 - undefined
         
     </title>
 
@@ -32,6 +32,7 @@
 
 
 <body>
+
 <div class="site-nav-toggle" id="site-nav-toggle">
     <button>
         <span class="btn-bar"></span>
@@ -95,7 +96,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#类的加载"><span class="toc-text">类的加载</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#概述"><span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类的初始化时机"><span class="toc-text">类的初始化时机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类加载器"><span class="toc-text">类加载器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#类加载器的作用"><span class="toc-text">类加载器的作用</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#反射"><span class="toc-text">反射</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#通过反射获取构造方法并使用"><span class="toc-text">通过反射获取构造方法并使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过反射获取成员变量并使用"><span class="toc-text">通过反射获取成员变量并使用</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#类的加载"><span class="toc-text">类的加载</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#概述"><span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类的初始化时机"><span class="toc-text">类的初始化时机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类加载器"><span class="toc-text">类加载器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#类加载器的作用"><span class="toc-text">类加载器的作用</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#反射"><span class="toc-text">反射</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#通过反射获取构造方法并使用"><span class="toc-text">通过反射获取构造方法并使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过反射获取成员变量并使用"><span class="toc-text">通过反射获取成员变量并使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过反射获取成员方法并使用"><span class="toc-text">通过反射获取成员方法并使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#综合运用"><span class="toc-text">综合运用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#动态代理"><span class="toc-text">动态代理</span></a></li></ol></li></ol>
 </div>
     
 </div>
@@ -125,11 +126,11 @@
 
 <div class="post-container">
     <div class="post-title">
-        
+        J2SE学习笔记-反射
     </div>
 
     <div class="post-meta">
-        <span class="attr">发布于：<span>2018-10-26 00:29:53</span></span>
+        <span class="attr">发布于：<span>2018-10-26 23:37:00</span></span>
         
         
         <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
@@ -228,7 +229,7 @@
 <ul>
 <li>A: Object类的getClass()方法</li>
 <li>B: 数据类型的静态属性class</li>
-<li><p>C: Class类中的静态方法（最好写全路径，会抛出ClassNotFoundException）</p>
+<li><p>C: Class类中的静态方法（<strong>写全路径</strong>，会抛出ClassNotFoundException）</p>
 <ul>
 <li>public static Class forName(String className)</li>
 </ul>
@@ -288,7 +289,8 @@
 <li><code>Field getDeclaredField()</code>：获取单个任意属性</li>
 </ul>
 </li>
-<li>设置属性可访问<ul>
+<li><p>设置属性可访问</p>
+<ul>
 <li><code>public void setAccessible(boolean flag)</code></li>
 </ul>
 </li>
@@ -300,10 +302,130 @@
 </li>
 </ul>
 </li>
+<li><p>注：<strong>从父类继承来的属性是获取不到的</strong></p>
+</li>
 <li><p>例</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取Class对象</span></span><br><span class="line">Class c = Class.forName(<span class="string">"test.Person"</span>);</span><br><span class="line"><span class="comment">//获取无参构造器</span></span><br><span class="line">Constructor con = c.getDeclaredConstructor();</span><br><span class="line"><span class="comment">//通过无参构造器创建对象</span></span><br><span class="line">Object o = con.newInstance();</span><br><span class="line"><span class="comment">//获取公共属性并赋值</span></span><br><span class="line">Field nameField = c.getField(<span class="string">"name"</span>);</span><br><span class="line">nameField.set(o, <span class="string">"Tom"</span>);</span><br><span class="line"><span class="comment">//获取私有属性</span></span><br><span class="line">Field ageField = c.getDeclaredField(<span class="string">"age"</span>);</span><br><span class="line"><span class="comment">//设为可访问并赋值</span></span><br><span class="line">ageField.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">ageField.set(o, <span class="number">18</span>);</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
+<h2 id="通过反射获取成员方法并使用"><a href="#通过反射获取成员方法并使用" class="headerlink" title="通过反射获取成员方法并使用"></a>通过反射获取成员方法并使用</h2><ul>
+<li><p>获取所有方法</p>
+<ul>
+<li><code>Method[] getMethods()</code> ：获取<strong>自己的包括父类继承来的</strong>公共方法</li>
+<li><code>Method[] getDeclaredMethods()</code>： 获取<strong>自己的</strong>所有的方法</li>
+</ul>
+</li>
+<li><p>获取单个方法</p>
+<ul>
+<li><p><code>public Method getMethod(String name,Class&lt;?&gt;... parameterTypes)</code>：</p>
+<ul>
+<li><p>获取自己的包括父类继承来的公共方法</p>
+</li>
+<li><p>第一个参数表示的方法名，第二个参数表示的是方法的参数的class类型</p>
+</li>
+</ul>
+</li>
+<li><p><code>public Method getDecalredMethod(String name,Class&lt;?&gt;... parameterTypes)</code>：</p>
+<ul>
+<li>获取自己的所有方法</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>设置方法可访问</p>
+<ul>
+<li><code></code>public void setAccessible(boolean flag)`</li>
+</ul>
+</li>
+<li><p>使用方法</p>
+<ul>
+<li><code>public Object invoke(Object obj,Object... args)</code>:<ul>
+<li>返回值是Object接收,第一个参数表示对象是谁，第二参数表示调用该方法的实际参数</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Class ca = Class.forName(<span class="string">"test.B"</span>);</span><br><span class="line">Object o = ca.newInstance();</span><br><span class="line"><span class="comment">//获取无参非静态无返回值方法并执行</span></span><br><span class="line">Method m = ca.getMethod(<span class="string">"show"</span>);</span><br><span class="line">m.invoke(o);</span><br><span class="line"><span class="comment">//获取带参静态有返回值方法并执行</span></span><br><span class="line">Method m2 = ca.getDeclaredMethod(<span class="string">"print"</span>, String.class);</span><br><span class="line">m2.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">Object result = m2.invoke(o, <span class="string">"hello"</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="综合运用"><a href="#综合运用" class="headerlink" title="综合运用"></a>综合运用</h2><ul>
+<li><p>模拟通过反射运行配置文件</p>
+<ul>
+<li><p>如果没有反射，只能通过修改代码实现功能的切换，有了反射，修改配置文件即可</p>
+</li>
+<li><p>设配置文件的格式为：</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">className = XXX</span><br><span class="line">methodName = XXX</span><br><span class="line">...//之后能有参数个数，参数类型，参数值等信息</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>以实现无参方法为例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//和Properities类结合，读取配置信息</span></span><br><span class="line">Properties p = <span class="keyword">new</span> Properties();</span><br><span class="line">FileInputStream fis = <span class="keyword">new</span> FileInputStream(<span class="string">"E:\\class.txt"</span>);</span><br><span class="line">p.load(fis);</span><br><span class="line"><span class="comment">//构造对象</span></span><br><span class="line">String className = p.getProperty(<span class="string">"className"</span>);</span><br><span class="line">Class c = Class.forName(className);</span><br><span class="line">Object o = c.newInstance();</span><br><span class="line"><span class="comment">//执行方法</span></span><br><span class="line">String methodName = p.getProperty(<span class="string">"methodName"</span>);</span><br><span class="line">Method m = c.getMethod(methodName);</span><br><span class="line">m.invoke(o);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>模拟越过泛型检查</p>
+<ul>
+<li><p>因为泛型其实只是一个编译机制，编译后是会被擦除的，对于没有通过extends通配符限定的泛型类型，编译后是Object类型的，所以是可以存入任意类型的，只不过在编译时会进行检查。通过反射，强制将不同类型的数据插入。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//对于泛型为Integer的ArrayList，强制add一个String类型数据</span></span><br><span class="line">ArrayList&lt;Integer&gt; a = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">Class c = ArrayList.class;</span><br><span class="line">Method m = c.getMethod(<span class="string">"add"</span>, Object.class);</span><br><span class="line">m.invoke(a, <span class="string">"hello"</span>);</span><br><span class="line"><span class="comment">//我们已经加进去了但是这里还是会报错，很有意思</span></span><br><span class="line">String s = a.get(<span class="number">0</span>);<span class="comment">//cannot convert from Integer to String</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>写一个方法</p>
+<ul>
+<li><p>public void setProperty(Object obj, String propertyName, Object value){}</p>
+</li>
+<li><p>此方法可将obj对象中名为propertyName的属性的值设置为value。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">setProperty</span><span class="params">(Object obj, String propertyName, Object value)</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">	<span class="comment">//通过getClass获取Class对象</span></span><br><span class="line">	Class c = obj.getClass();</span><br><span class="line">	<span class="comment">//获取属性</span></span><br><span class="line">	Field f = c.getDeclaredField(propertyName);</span><br><span class="line">	<span class="comment">//赋值</span></span><br><span class="line">    f.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">	f.set(obj, value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h2><ul>
+<li><p>需求：需要在原本的类上增加一些通用新功能，但是直接修改代码的话就破坏了开闭原则，拓展性很低，而且如果方法很多，需要修改的代码就很多，所以就让别的类来帮忙实现。</p>
+</li>
+<li><p>代理：本来应该自己做的事情，却请了别人来做，被请的人就是代理对象。</p>
+<ul>
+<li>如房产中介，找房的工作他帮你实现，你只负责买房。</li>
+</ul>
+</li>
+<li><p>动态代理：在程序运行过程中产生的对象</p>
+<ul>
+<li>而程序运行过程中产生对象其实就是通过反射来实现的</li>
+</ul>
+</li>
+<li><p>在Java中<code>java.lang.reflect</code>包下提供了一个Proxy类和一个<code>InvocationHandler</code>接口，通过使用这个类和接口就可以生成动态代理对象。JDK提供的代理只能针对接口做代理。有更强大的代理<code>cglib</code></p>
+</li>
+<li><p>Proxy类中的方法创建动态代理类对象</p>
+<ul>
+<li><p><code>public static Object newProxyInstance(ClassLoader loader,Class&lt;?&gt;[] interfaces,InvocationHandler h)</code>：返回一个指定接口的代理类实例</p>
+<p>返回一个指定接口的代理类实例</p>
+</li>
+<li><p>返回的Object就是需被代理的类，最终会调用<code>InvocationHandler</code>的方法</p>
+</li>
+</ul>
+</li>
+<li><p>InvocationHandler：调用处理程序接口</p>
+<ul>
+<li><p><code>Object invoke(Object proxy,Method method,Object[] args)</code>：在代理实例上处理方法调用并返回结果。</p>
+<ul>
+<li><p>参数：</p>
+<ul>
+<li><p>proxy：需要代理的类实例</p>
+</li>
+<li><p>method：需要代理的类需实现的方法 </p>
+</li>
+<li><p>args：方法需要的参数</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>例:模拟实现一个在执行方法前执行权限校验，执行方法后执行日志记录的代理</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//有这样一个用于实现增删改查的接口</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserDao</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">delete</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">find</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//有一个实现类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserDaoImpl</span> <span class="keyword">implements</span> <span class="title">UserDao</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"添加功能"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">delete</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"删除功能"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"修改功能"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">find</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"查找功能"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//首先实现一个代理处理程序</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyInvocationHandler</span> <span class="keyword">implements</span> <span class="title">InvocationHandler</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> Object target; <span class="comment">// 目标对象</span></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">MyInvocationHandler</span><span class="params">(Object target)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.target = target;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span></span></span><br><span class="line"><span class="function">			<span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"权限校验"</span>);</span><br><span class="line">		Object result = method.invoke(target, args);</span><br><span class="line">		System.out.println(<span class="string">"日志记录"</span>);</span><br><span class="line">		<span class="keyword">return</span> result; <span class="comment">// 返回的是代理对象的返回值</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用代理类代理</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProxyDemo</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">//创建需代理的对象</span></span><br><span class="line">		UserDao ud = <span class="keyword">new</span> UserDaoImpl();</span><br><span class="line">		<span class="comment">//创建代理</span></span><br><span class="line">		InvocationHandler handler = <span class="keyword">new</span> MyInvocationHandler(ud);</span><br><span class="line">		UserDao ud2 = (UserDao)Proxy.newProxyInstance(ud.getClass().getClassLoader(), </span><br><span class="line">				ud.getClass().getInterfaces(), handler);</span><br><span class="line">		<span class="comment">//这样就可以用代理类实现功能了</span></span><br><span class="line">		ud2.add();</span><br><span class="line">		ud2.delete();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>​    </p>
 
         
         <br>
